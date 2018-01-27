@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Header from 'components/Header';
 import { Route, Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
-import { keyPressed, updatePosition, keyPressedUp, initialLoad, mouseDown, changeScreen } from 'actions/index.js';
+
 import { KeyCodes } from 'constants';
 import sprite from 'assets/sprites/stand1.png';
 import sprite2 from 'assets/sprites/stand1_reverse.png';
@@ -11,6 +11,7 @@ import Intro from 'components/Intro.js';
 import MainPage from 'components/mainPage.js';
 import { CSSTransition } from 'react-transition-group';
 import PatternLock from '../../node_modules/pattern-lock-js/dist/patternlock.min.js';
+import { keyPressed } from 'actions/indexLoC.js';
 import '../css/grid.css';
 
 class KennyPage extends React.Component {
@@ -18,8 +19,6 @@ class KennyPage extends React.Component {
 
     componentDidMount() {
         var lock = new PatternLock("#patternHolder", {
-            radius: 0,
-            margin: 50,
             onPattern: function(pattern) {
               // Context is the pattern lock instance 
               console.log(pattern);

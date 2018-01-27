@@ -1,23 +1,16 @@
 import { KeyCodes, Actions } from '../constants';
 
 
-const position = {
-    horizontal: 0,
-    vertical: 0,
-    d: [3][3],
-    direction: true,
-    sprite: 0,
-    limits: [],
-    isPlaying: false,
+const myMove = {
+    stroke: 0
 }
 
 
 //Separate reducers into SPRITE and position.
 //Condesne reducer and remove deundancy
-const movementSuccess = (state = position, action) => {
+const castSuccess = (state = myMove, action) => {
     //console.log(action  );
-    
-    
+
     switch (action.type) {
         case 'MOVE_RIGHT':
             return {
@@ -82,5 +75,4 @@ const movementSuccess = (state = position, action) => {
     }
 }
 
-
-export default movementSuccess;
+export default castSuccess;
