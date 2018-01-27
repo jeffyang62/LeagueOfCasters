@@ -19,6 +19,11 @@ import 'materialize-css/dist/js/materialize.min.js';
 import 'materialize-css/dist/css/materialize.min.css';
 import 'materialize-css/dist/js/materialize.js';
 
+import 'jquery/dist/jquery.min.js';
+
+import 'pattern-lock-js/dist/patternlock.min.js';
+import 'pattern-lock-js/dist/patternlock.min.css';
+
 import './main.css';
 
 
