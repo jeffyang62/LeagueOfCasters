@@ -1,0 +1,70 @@
+import React from 'react';
+import { connect } from 'react-redux';
+import Header from 'components/Header';
+import { Route, Link } from 'react-router-dom';
+import { withRouter } from 'react-router';
+import { keyPressed, updatePosition, keyPressedUp, initialLoad, mouseDown, changeScreen } from 'actions/index.js';
+import { KeyCodes } from 'constants';
+import sprite from 'assets/sprites/stand1.png';
+import sprite2 from 'assets/sprites/stand1_reverse.png';
+import Intro from 'components/Intro.js';
+import MainPage from 'components/mainPage.js';
+import { CSSTransition } from 'react-transition-group';
+import PatternLock from '../../node_modules/pattern-lock-js/dist/patternlock.min.js';
+import '../css/grid.css';
+
+class KennyPage extends React.Component {
+   
+
+    componentDidMount() {
+        var lock = new PatternLock("#patternHolder", {
+            radius: 0,
+            margin: 50,
+            onPattern: function(pattern) {
+              // Context is the pattern lock instance 
+              console.log(pattern);
+            }
+        });
+    }
+
+    // componentWillMount(){
+        
+    // }
+
+    render() {
+        console.log(this.props.cast);
+         return (
+            <div>
+                <svg className="patternlock" id="patternHolder" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <g className="lock-actives"></g>
+                    <g className="lock-lines"></g>
+                    <g className="lock-dots">
+                        <circle cx="20" cy="20" r="2"/>
+                        <circle cx="50" cy="20" r="2"/>
+                        <circle cx="80" cy="20" r="2"/>
+                
+                        <circle cx="20" cy="50" r="2"/>
+                        <circle cx="50" cy="50" r="2"/>
+                        <circle cx="80" cy="50" r="2"/>
+                
+                        <circle cx="20" cy="80" r="2"/>
+                        <circle cx="50" cy="80" r="2"/>
+                        <circle cx="80" cy="80" r="2"/>
+                    </g>
+                </svg>                
+            </div>
+        );
+    }
+}
+
+
+const mapStateToProps = (state) => {
+    return { 
+        cast: state.cast
+    };
+}
+
+
+const mapDispatchToProps = (dispatch) => ({
+});
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(KennyPage));

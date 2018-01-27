@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Header from 'components/Header';
 import HomePage from 'views/HomePage';
 import PortfolioPage from 'views/PortfolioPage';
+import KennyPage from 'views/KennyPage';
 import { Route, Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 
@@ -14,6 +15,8 @@ class App extends React.Component {
                 <main>
                     <Route exact path="/" component={HomePage} />
                     <Route exact path="/portfolio" component={PortfolioPage} />
+                    <Route exact path="/kennyroute" component={KennyPage} />
+
                 </main>
 
                 <div
@@ -22,12 +25,11 @@ class App extends React.Component {
                     height="150px"
                     className="sprite horizontalPosition" 
                 />
-          
-
             </div>
         );
     }
 }
+
 
 const mapStateToProps = (state) => {
     return {}

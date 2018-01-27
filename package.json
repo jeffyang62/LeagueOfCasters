@@ -18,8 +18,10 @@
   "dependencies": {
     "babel-polyfill": "6.26.0",
     "history": "4.7.2",
-    "jquery": "^3.2.1",
+    "jquery": "^3.3.1",
     "materialize-css": "^0.100.2",
+    "nodemon": "^1.14.11",
+    "pattern-lock-js": "^1.0.0",
     "react": "16.0.0",
     "react-dom": "16.0.0",
     "react-redux": "5.0.6",
