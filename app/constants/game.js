@@ -11,3 +11,17 @@ export const KeyCodes = {
     RIGHT_ARROW: 39,
     DOWN_ARROW: 40,
 };
+
+
+export const GAME_CODES = {
+    ATTACK1: [
+        [0,0,1],
+        [0,0,1],
+        [0,0,1]
+    ],
+    ATTACK2: [
+        [1,0,0],
+        [1,0,0],
+        [1,0,0]
+    ]
+}

@@ -124,3 +124,34 @@ body{
     transition: opacity 800ms ease-in;
   }
   
+
+img{
+    height: 40vh;
+    display: block;
+    margin: 0 auto;
+    position: absolute;
+}
+
+
+
+.upperVision{
+    height: 50vh;
+    width: 100vw;
+    background: white;
+}
+.fire{
+   background: red;
+    height: 50vh;
+    width: 100vw;
+
+}
+.wind{
+    background: lightgreen;
+    height: 50vh;
+    width: 100vw;
+}
+.water{
+    background: lightblue;
+    height: 50vh;
+    width: 100vw;
+}
