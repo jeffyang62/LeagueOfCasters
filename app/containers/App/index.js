@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Header from 'components/Header';
-import HomePage from 'views/HomePage';
-import PortfolioPage from 'views/PortfolioPage';
+import JeffPage from 'views/JeffPage'
 import KennyPage from 'views/KennyPage';
 import { Route, Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
@@ -13,10 +12,8 @@ class App extends React.Component {
         return (
             <div>
                 <main>
-                    <Route exact path="/" component={HomePage} />
-                    <Route exact path="/portfolio" component={PortfolioPage} />
+                    <Route exact path="/jefftest" component={JeffPage} />
                     <Route exact path="/kennyroute" component={KennyPage} />
-
                 </main>
 
                 <div
