@@ -4,27 +4,29 @@
 // import RightSprite from 'assets/sprites/walkRight2.png';
 import { checkDamage } from '../helper/damagePhase.js';
 
-export function wonFight(){
+export function wonFight(pattern){
     return {
-        type: 'WIN_BATTLE'
+        type: 'WIN_BATTLE',
+        pattern: pattern
     }
 }
 
-export function lostFight(){
+export function lostFight(pattern){
     return {
-        type: 'LOSE_BATTLE'
+        type: 'LOSE_BATTLE',
+        pattern: pattern
     }
 }
 
 /**
  * Thunk get afterbattle result
  */
-export function getBattleResult(){
+export function getBattleResult(pattern){
     return (dispatch ,getState) => {
-        if(checkDamage(getState.cast, 1236)){
-            dispatch(wonFight());
+        if(checkDamage(pattern, 1236)){
+            dispatch(wonFight(pattern));
         } else {
-            dispatch(lostFight());
+            dispatch(lostFight(pattern));
         }
     }
 }
