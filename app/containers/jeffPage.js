@@ -29,7 +29,9 @@ class jeffpage extends React.Component {
         var lock = new PatternLock("#patternHolder", {
             onPattern: function(pattern) {
               // Context is the pattern lock instance
-                props.fight(pattern);    
+              if(pattern){
+                props.fight(pattern);
+              }
             }
         });
     }

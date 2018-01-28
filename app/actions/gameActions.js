@@ -92,10 +92,10 @@ export function startTimer() {
         
         getTime(getState().game.level)
             .then((timer) => {
-                const stance = getStance(),
-                    stanceType = getStanceType();          
+                const stance = 0,// getStance(),
+                    stanceType = 0;// getStanceType();          
                 dispatch(startProgress(timer));
-                dispatch(StartInitial(timer, 0, 0));
+                dispatch(StartInitial(timer, stance, stanceType));
                 dispatch(getNpcPattern(stance,stanceType));
 
                 //get pattern form kenny code.
