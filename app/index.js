@@ -22,7 +22,7 @@ import 'materialize-css/dist/js/materialize.js';
 import 'jquery/dist/jquery.min.js';
 
 import 'pattern-lock-js/dist/patternlock.min.js';
-import 'pattern-lock-js/dist/patternlock.min.css';
+import 'pattern-lock-js/dist/patternlock.css';
 
 import './main.css';
 

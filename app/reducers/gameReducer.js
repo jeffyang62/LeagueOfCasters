@@ -1,17 +1,18 @@
 import { KeyCodes, Actions } from '../constants';
 
-const screens = {
+const gameStates = {
     stance: 0,
     level: 1,
-    timer: 2000,
+    timer: 10000,
     pattern: 0,
     stanceType: 0,  //0 = fire , 1 = wind , 2 = water
     points: 0,
+    isGameOver: false
 }
 
 //Separate reducers into SPRITE and position.
 //Condesne reducer and remove deundancy
-const screenSuccess = (state = screens, action) => {
+const screenSuccess = (state = gameStates, action) => {
     switch (action.type) {
         case 'START_GAME': 
             return {
@@ -35,6 +36,19 @@ const screenSuccess = (state = screens, action) => {
             return {
                 ...state,
                 pattern: action.pattern
+            }
+        case 'GAME_OVER':
+            return {
+                ...state,
+                isGameOver: true
+            }
+        case 'RESTART_GAME':
+            return {
+                ...state,
+                points: 0,
+                level: 1,
+                timer: 10000,
+                isGameOver: false
             }
         default:
             return state;

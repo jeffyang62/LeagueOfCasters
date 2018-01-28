@@ -1,20 +1,6 @@
-export const Actions = {
-    MOVE_LEFT: 'MOVE_LEFT',
-    MOVE_RIGHT: 'MOVE_RIGHT',
-    MOVE_DOWN: 'MOVE_DOWN',
-    MOVE_UP: 'MOVE_UP',
-};
-
-export const KeyCodes = {
-    SPACE_BAR: 32,
-    LEFT_ARROW: 37,
-    RIGHT_ARROW: 39,
-    DOWN_ARROW: 40,
-};
-
 
 export const GAME_CODES = {
-    FIRE_ATTACK: 1235987,
+    FIRE_ATTACK: 123,
     FIRE_DEFEND: 1486325,
     WATER_ATTACK: 3698752,
     WATER_DEFEND: 3684125,

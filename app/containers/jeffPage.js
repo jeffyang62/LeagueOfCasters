@@ -11,9 +11,10 @@ import { CSSTransition } from 'react-transition-group';
 
 import Attack from 'components/attack.js';
 import Defend from 'components/defend.js';
+import GameOver from 'components/gameover.js';
 
-import { startGame, startProgress } from 'actions/gameActions.js';
-import { getBattleResult } from 'actions/indexLoC.js'
+
+import { startGame, startProgress, getBattleResult, retry } from 'actions/gameActions.js';
 
 
 import PatternLock from '../../node_modules/pattern-lock-js/dist/patternlock.min.js';
@@ -28,7 +29,9 @@ class jeffpage extends React.Component {
         var lock = new PatternLock("#patternHolder", {
             onPattern: function(pattern) {
               // Context is the pattern lock instance
-                props.fight(pattern);    
+              if(pattern){
+                props.fight(pattern);
+              }
             }
         });
     }
@@ -37,12 +40,13 @@ class jeffpage extends React.Component {
         //console.log(this.props.game.stance)
          return (
             <div>
+                
+                {this.props.game.isGameOver ? <GameOver {...this.props} /> : ''}
                 <div className ="row">
                     <div className={this.props.game.stanceType == 0 ? "col s12 fire": this.props.game.stanceType == 1 ? "col s12 water": "col s12 wind" }>
+                    <p>{this.props.game.points}</p>
                         {this.props.game.stance==0 ? <Attack /> : <Defend />}
-                      
                     </div>
-                    
                 </div>
                 <div className="row">
                      <div id="col s12 myProgress">
@@ -54,17 +58,17 @@ class jeffpage extends React.Component {
                         <g className="lock-actives"></g>
                         <g className="lock-lines"></g>
                         <g className="lock-dots">
-                            <circle cx="20" cy="20" r="2"/>
-                            <circle cx="50" cy="20" r="2"/>
-                            <circle cx="80" cy="20" r="2"/>
+                            <circle cx="10" cy="10" r="2"/>
+                            <circle cx="50" cy="10" r="2"/>
+                            <circle cx="90" cy="10" r="2"/>
                     
-                            <circle cx="20" cy="50" r="2"/>
+                            <circle cx="10" cy="50" r="2"/>
                             <circle cx="50" cy="50" r="2"/>
-                            <circle cx="80" cy="50" r="2"/>
+                            <circle cx="90" cy="50" r="2"/>
                     
-                            <circle cx="20" cy="80" r="2"/>
-                            <circle cx="50" cy="80" r="2"/>
-                            <circle cx="80" cy="80" r="2"/>
+                            <circle cx="10" cy="90" r="2"/>
+                            <circle cx="50" cy="90" r="2"/>
+                            <circle cx="90" cy="90" r="2"/>
                         </g>
                     </svg>             
                 </div>
@@ -83,6 +87,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
     start: () => dispatch(startGame()),
     progress: () => dispatch(startProgress()),
-    fight: (codeCommand) => dispatch(getBattleResult(codeCommand))
+    fight: (codeCommand) => dispatch(getBattleResult(codeCommand)),
+    restartGame: () => dispatch(retry())
 });
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(jeffpage));

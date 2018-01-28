@@ -1,0 +1,8 @@
+.gameoverbox {
+    height: 50%;
+    width: 100%;
+    margin-top: 90%;
+    background-color: antiquewhite;
+    position: absolute;
+    z-index: 9999;
+}

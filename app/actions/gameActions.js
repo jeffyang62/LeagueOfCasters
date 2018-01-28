@@ -1,5 +1,28 @@
-import { getTime, getStance, getStanceType } from '../helper/gameFunctions.js';
+import { getTime, getStance, getStanceType, calculateScore } from '../helper/gameFunctions.js';
 import { GAME_CODES } from '../constants';
+import { checkDamage } from '../helper/damagePhase.js';
+
+export function wonFight(pattern){
+    console.log("win")
+    return {
+        type: 'WIN_BATTLE',
+        pattern: pattern
+    }
+}
+
+export function lostFight(){
+    
+    return {
+        type: 'GAME_OVER'
+    }
+}
+
+export function restartGame(){
+    return {
+        type: 'RESTART_GAME'
+    }
+}
+
 
 export function StartInitial(timer, stance, stanceType) {    
     return {
@@ -10,11 +33,13 @@ export function StartInitial(timer, stance, stanceType) {
     }
 }
 
-
 export function updatePoints(points) {
     return {
         type: "RIGHT_PATTERN",
         points,
+    }
+}
+
 export function fireAttack(){
     return {
         type: 'UPDATE_PATTERN', 
@@ -67,8 +92,8 @@ export function startTimer() {
         
         getTime(getState().game.level)
             .then((timer) => {
-                const stance = getStance(),
-                    stanceType = getStanceType();          
+                const stance = 0,// getStance(),
+                    stanceType = 0;// getStanceType();          
                 dispatch(startProgress(timer));
                 dispatch(StartInitial(timer, stance, stanceType));
                 dispatch(getNpcPattern(stance,stanceType));
@@ -113,13 +138,20 @@ export function startGame() {
 
 let id = 0;
 
-export function correct() {
-    return (dispatch, getState) => {
 
-
+/**
+ * Thunk get afterbattle result
+ */
+export function getBattleResult(pattern){
+    return (dispatch ,getState) => {
+        if(checkDamage(pattern, getState().game.pattern)){
+            dispatch(startTimer());
+            dispatch(updatePoints(calculateScore(getState().game.level,getState().game.points)));
+        } else {
+            //Lose
+            dispatch(gameOver());
+        }
         clearInterval(id);
-        dispatch(updatePoints(getState().game.points));
-        dispatch(startTimer());
     }
 }
 
@@ -141,4 +173,16 @@ export function startProgress() {
         }
     }
 }
+
+export function gameOver(){
+    return (dispatch, getState) => {
+        dispatch(lostFight());
+    }
+}
   
+export function retry(){
+    return (dispatch) => {
+        dispatch(restartGame());
+        dispatch(startGame());
+    }
+}
