@@ -18,7 +18,7 @@ import { startGame, startProgress, getBattleResult, retry } from 'actions/gameAc
 
 
 import PatternLock from '../../node_modules/pattern-lock-js/dist/patternlock.min.js';
-
+import '../css/lines.css';
 
 class jeffpage extends React.Component {
    
