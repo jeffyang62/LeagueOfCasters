@@ -10,6 +10,11 @@ export function StartInitial(timer, stance, stanceType) {
     }
 }
 
+
+export function updatePoints(points) {
+    return {
+        type: "RIGHT_PATTERN",
+        points,
 export function fireAttack(){
     return {
         type: 'UPDATE_PATTERN', 
@@ -55,24 +60,24 @@ export function airDefend(){
 //needs to update scores
 //needs to update levels after x amount of rounds.
 //set random type of jutsu
+
 export function startTimer() {
     return (dispatch, getState) => {
         //console.log(getState());
+        
         getTime(getState().game.level)
             .then((timer) => {
                 const stance = getStance(),
-                    stanceType = getStanceType();
-
+                    stanceType = getStanceType();          
+                dispatch(startProgress(timer));
                 dispatch(StartInitial(timer, stance, stanceType));
                 dispatch(getNpcPattern(stance,stanceType));
-                setTimeout(() => {
-                    //console.log("timer started...");
-                    dispatch(startTimer());
-                }, timer)                
+
+                //get pattern form kenny code.
             })
     }
 }
-
+//Start - Round 1... then start
 export function getNpcPattern(stance, stanceType){
     return (dispatch, getState) => {
         switch(stanceType) {
@@ -100,14 +105,40 @@ export function getNpcPattern(stance, stanceType){
         }
     }
 }
-
 export function startGame() {
     return (dispatch, getState) => {
        dispatch(startTimer());
     }
 }
-  
-function resetTimer() {
-   
-  }
+
+let id = 0;
+
+export function correct() {
+    return (dispatch, getState) => {
+
+
+        clearInterval(id);
+        dispatch(updatePoints(getState().game.points));
+        dispatch(startTimer());
+    }
+}
+
+export function startProgress() {
+    return (dispatch, getState) => {
+        const timer = getState().game.timer;
+        //console.log(timer);
+        const elem = document.getElementById("myBar"); 
+        let width = 1;
+        id = setInterval(frame, timer/100);
+        function frame() {
+            if (width >= 100) {
+                clearInterval(id);
+                dispatch(startTimer());
+            } else {
+                width++; 
+                elem.style.width = width + '%'; 
+            }
+        }
+    }
+}
   
