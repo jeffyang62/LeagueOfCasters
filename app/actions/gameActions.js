@@ -1,4 +1,4 @@
-import { getTime, getStance, getStanceType } from '../helper/gameFunctions.js';
+import { getTime, getStance, getStanceType, calculateScore } from '../helper/gameFunctions.js';
 import { GAME_CODES } from '../constants';
 import { checkDamage } from '../helper/damagePhase.js';
 
@@ -10,11 +10,16 @@ export function wonFight(pattern){
     }
 }
 
-export function lostFight(pattern){
+export function lostFight(){
     
     return {
-        type: 'LOSE_BATTLE',
-        pattern: pattern
+        type: 'GAME_OVER'
+    }
+}
+
+export function restartGame(){
+    return {
+        type: 'RESTART_GAME'
     }
 }
 
@@ -28,13 +33,13 @@ export function StartInitial(timer, stance, stanceType) {
     }
 }
 
-
 export function updatePoints(points) {
     return {
         type: "RIGHT_PATTERN",
         points,
     }
 }
+
 export function fireAttack(){
     return {
         type: 'UPDATE_PATTERN', 
@@ -90,7 +95,7 @@ export function startTimer() {
                 const stance = getStance(),
                     stanceType = getStanceType();          
                 dispatch(startProgress(timer));
-                dispatch(StartInitial(timer, stance, stanceType));
+                dispatch(StartInitial(timer, 0, 0));
                 dispatch(getNpcPattern(stance,stanceType));
 
                 //get pattern form kenny code.
@@ -140,11 +145,13 @@ let id = 0;
 export function getBattleResult(pattern){
     return (dispatch ,getState) => {
         if(checkDamage(pattern, getState().game.pattern)){
-            dispatch(updatePoints(getState().game.points));
+            dispatch(startTimer());
+            dispatch(updatePoints(calculateScore(getState().game.level,getState().game.points)));
         } else {
+            //Lose
+            dispatch(gameOver());
         }
         clearInterval(id);
-        dispatch(startTimer());
     }
 }
 
@@ -166,4 +173,16 @@ export function startProgress() {
         }
     }
 }
+
+export function gameOver(){
+    return (dispatch, getState) => {
+        dispatch(lostFight());
+    }
+}
   
+export function retry(){
+    return (dispatch) => {
+        dispatch(restartGame());
+        dispatch(startGame());
+    }
+}

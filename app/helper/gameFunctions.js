@@ -7,7 +7,9 @@ export function getTime(level) {
     return promise;
 }
 
-
+export function calculateScore(level, score){
+    return (level*10)+score;
+}
 
 export function getStance() {
     return Math.round(Math.random());
