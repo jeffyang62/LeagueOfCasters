@@ -4,6 +4,7 @@
   import { checkDamage } from '../helper/damagePhase.js';
 
 export function wonFight(pattern){
+    console.log("win")
     return {
         type: 'WIN_BATTLE',
         pattern: pattern
@@ -22,7 +23,7 @@ export function lostFight(pattern){
  */
 export function getBattleResult(pattern){
     return (dispatch ,getState) => {
-        if(checkDamage(pattern, 1236)){
+        if(checkDamage(pattern, getState().game.pattern)){
             dispatch(wonFight(pattern));
         } else {
             dispatch(lostFight(pattern));

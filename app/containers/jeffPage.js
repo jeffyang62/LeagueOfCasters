@@ -12,8 +12,8 @@ import { CSSTransition } from 'react-transition-group';
 import Attack from 'components/attack.js';
 import Defend from 'components/defend.js';
 
-import { startGame, startProgress } from 'actions/gameActions.js';
-import { getBattleResult } from 'actions/indexLoC.js'
+
+import { startGame, startProgress, getBattleResult } from 'actions/gameActions.js';
 
 
 import PatternLock from '../../node_modules/pattern-lock-js/dist/patternlock.min.js';

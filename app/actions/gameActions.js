@@ -1,5 +1,23 @@
 import { getTime, getStance, getStanceType } from '../helper/gameFunctions.js';
 import { GAME_CODES } from '../constants';
+import { checkDamage } from '../helper/damagePhase.js';
+
+export function wonFight(pattern){
+    console.log("win")
+    return {
+        type: 'WIN_BATTLE',
+        pattern: pattern
+    }
+}
+
+export function lostFight(pattern){
+    
+    return {
+        type: 'LOSE_BATTLE',
+        pattern: pattern
+    }
+}
+
 
 export function StartInitial(timer, stance, stanceType) {    
     return {
@@ -15,6 +33,8 @@ export function updatePoints(points) {
     return {
         type: "RIGHT_PATTERN",
         points,
+    }
+}
 export function fireAttack(){
     return {
         type: 'UPDATE_PATTERN', 
@@ -113,12 +133,17 @@ export function startGame() {
 
 let id = 0;
 
-export function correct() {
-    return (dispatch, getState) => {
 
-
+/**
+ * Thunk get afterbattle result
+ */
+export function getBattleResult(pattern){
+    return (dispatch ,getState) => {
+        if(checkDamage(pattern, getState().game.pattern)){
+            dispatch(updatePoints(getState().game.points));
+        } else {
+        }
         clearInterval(id);
-        dispatch(updatePoints(getState().game.points));
         dispatch(startTimer());
     }
 }

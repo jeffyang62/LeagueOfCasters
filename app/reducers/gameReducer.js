@@ -3,7 +3,7 @@ import { KeyCodes, Actions } from '../constants';
 const screens = {
     stance: 0,
     level: 1,
-    timer: 2000,
+    timer: 10000,
     pattern: 0,
     stanceType: 0,  //0 = fire , 1 = wind , 2 = water
     points: 0,
