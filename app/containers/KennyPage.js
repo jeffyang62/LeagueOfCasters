@@ -5,10 +5,7 @@ import { Route, Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 
 import { KeyCodes } from 'constants';
-import sprite from 'assets/sprites/stand1.png';
-import sprite2 from 'assets/sprites/stand1_reverse.png';
 import { CSSTransition } from 'react-transition-group';
-import PatternLock from '../../node_modules/pattern-lock-js/dist/patternlock.min.js';
 import { keyPressed } from 'actions/indexLoC.js';
 import '../css/grid.css';
 
@@ -34,7 +31,6 @@ class KennyPage extends React.Component {
     // }
 
     render() {
-        console.log(this.props.cast);
          return (
             <div>
                 <svg className="patternlock" id="patternHolder" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">

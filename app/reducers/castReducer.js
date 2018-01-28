@@ -9,9 +9,6 @@ const myMove = {
 //Separate reducers into SPRITE and position.
 //Condesne reducer and remove deundancy
 const castSuccess = (state = myMove, action) => {
-    console.log("Action is: ")
-    console.log(action);
-
     switch (action.type) {
         case 'WIN_BATTLE':
             return {

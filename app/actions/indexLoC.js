@@ -1,8 +1,7 @@
 // import { newHorizontal, newVertical, limit } from '../helper/position.js';
 // import { KeyCodes, Actions } from '../constants';
 // import Spritz from 'spritz.js';
-// import RightSprite from 'assets/sprites/walkRight2.png';
-import { checkDamage } from '../helper/damagePhase.js';
+  import { checkDamage } from '../helper/damagePhase.js';
 
 export function wonFight(pattern){
     return {
@@ -32,27 +31,3 @@ export function getBattleResult(pattern){
 }
 
 
-
-//function sshould accept an image as sprite,
-//need to add delete sprite to clear memory.
-export function initialLoad(props) {
-
-        const sprites = Spritz('#SPRITE', {
-            picture: [{
-                srcset: RightSprite, 
-                width: 338,
-                height: 90, 
-            }],
-            steps: 5,
-        }).flip();
-    
-        
-        return (dispatch) => {
-            limit(window.innerWidth)
-                .then(
-                    (limits) => {
-                        dispatch(initLoad(limits, sprites));
-                    }
-                )
-        }
-    }
