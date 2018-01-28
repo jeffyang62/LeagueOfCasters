@@ -7,6 +7,8 @@ export function getTime(level) {
     return promise;
 }
 
+
+
 export function getStance() {
     return Math.round(Math.random());
 }

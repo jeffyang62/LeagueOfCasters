@@ -3,9 +3,10 @@ import { KeyCodes, Actions } from '../constants';
 const screens = {
     stance: 0,
     level: 1,
-    timer: 0,
+    timer: 2000,
     pattern: 0,
     stanceType: 0,  //0 = fire , 1 = wind , 2 = water
+    points: 0,
 }
 
 //Separate reducers into SPRITE and position.
@@ -17,7 +18,6 @@ const screenSuccess = (state = screens, action) => {
         case 'START_GAME': 
             return {
                 ...state,
-
             }
         case 'UPDATE':
             return {
@@ -25,12 +25,11 @@ const screenSuccess = (state = screens, action) => {
                 timer: action.timer,
                 stance: action.stance,
                 stanceType: action.stanceType,
-
             }
-        case 'CHANGE_SCREEN':
+        case 'RIGHT_PATTERN':
             return {
                 ...state,
-                stance: action.stance,
+                points: action.points,
 
                 //horizontal: action.position,
             }    

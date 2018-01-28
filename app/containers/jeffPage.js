@@ -12,7 +12,7 @@ import { CSSTransition } from 'react-transition-group';
 import Attack from 'components/attack.js';
 import Defend from 'components/defend.js';
 
-import { startGame } from 'actions/gameActions.js';
+import { startGame, startProgress } from 'actions/gameActions.js';
 
 
 
@@ -25,16 +25,20 @@ class jeffpage extends React.Component {
     render() {
         //console.log(this.props.game.stance)
          return (
-            <div className ="row">
-                <div className="col s12 header">
-                    {this.props.game.timer}
-                </div>
-                <div className={this.props.game.stanceType == 0 ? "col s12 fire": this.props.game.stanceType == 1 ? "col s12 water": "col s12 wind" }>
-                    {this.props.game.stance==0 ? <Attack /> : <Defend />}
-                    
+            <div>
+                <div className ="row">
+                    <div className={this.props.game.stanceType == 0 ? "col s12 fire": this.props.game.stanceType == 1 ? "col s12 water": "col s12 wind" }>
+                        {this.props.game.stance==0 ? <Attack /> : <Defend />}
+                        
 
+                    </div>
+                    
                 </div>
-                
+                <div className="row">
+                <div id="col s12 myProgress">
+                        <div id="myBar"></div>
+                    </div>
+                </div>
             </div>
         );
     }
@@ -46,8 +50,8 @@ const mapStateToProps = (state) => {
     };
 }
 
-
 const mapDispatchToProps = (dispatch) => ({
     start: () => dispatch(startGame()),
+    progress: () => dispatch(startProgress()),
 });
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(jeffpage));

@@ -4,127 +4,6 @@ body{
     overflow-y: hidden;
 }
 
-.BLUE{
-    background: #7C1019;
-}
-
-.PURPLE{
-    background: #E6BD70;
-}
-
-.RED{
-    background: #BEE1FE;
-}
-
-.YELLOW{
-    background: #D4EB6F;
-}
-
-.background1{
-    height: 100vh;
-    width: 100vw;
-    position: relative;
-}
-
-.background1::after{
-    content: "";
-    position: absolute;
-    height: 100vh;
-    width: 100vw;
-    top:0;
-    left:0;
-    z-index: -1;
-    
-    background: url('assets/Background1.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.darken::after{
-    filter:  brightness(30%);
-}
-
-#SPRITE{
-    position: absolute;
-    bottom: 60px;
-    height: 200px;
-    width: 200px;
-    left: 0px;
-    -webkit-transition: 0.2s ease-out;
-}
-
-
-
-.door{
-    height: 400px;
-    position: relative;
-    top: -300px;
-    -webkit-transition: 0.3s ease-out;
-}
-.door_show{
-    top: 0px;
-    -webkit-transition: 0.3s ease-out;
-}
-.door .title{
-    position: absolute;
-    width: 100%;
-    bottom: 30px;
-}
-
-.door .title p {
-    text-align: center;
-    margin: 0 auto;
-    font-size: 150%;
-    font-variant: small-caps;
-}
-
-#human{
-    height: 100vh;
-    background-color: white;
-    background: url('assets/sprites/smile1_reverse.svg');
-    background-size: contain;
-    background-position-y: 30%;
-    background-repeat: no-repeat;
-    position: absolute;
-    width: 30vw;
-    z-index: 100000;
-}
-#text{
-    height: 40vh;
-    background-color: white;
-    width: 100vw;
-    position: absolute;
-    right: 0px;
-    bottom: 0px;
-    filter: brightness(100%);
-    z-index: 100000;
-}
-
-.bottom_right_position{
-    right: 50px;
-    bottom: 50px;
-    position: absolute;
-}
-
-.fade-enter {
-    opacity: 0.01;
-  }
-  
-  .fade-enter.fade-enter-active {
-    opacity: 1;
-    transition: opacity 1000ms ease-in;
-  }
-  
-  .fade-exit {
-    opacity: 1;
-  }
-  
-  .fade-exit.fade-exit-active {
-    opacity: 0.01;
-    transition: opacity 800ms ease-in;
-  }
-  
-
 img{
     height: 40vh;
     display: block;
@@ -132,7 +11,21 @@ img{
     position: absolute;
 }
 
+#sword{
+    height: 30vh;
+    display: block;
+    margin: 0 auto;
+    top: 10vh;
+    left: 25vw;
+}
 
+#shield{
+    height: 30vh;
+    top: 10vh;
+    display: block;
+    margin: 0 auto;
+    left: 25vw;
+}
 
 .upperVision{
     height: 50vh;
@@ -150,8 +43,19 @@ img{
     height: 50vh;
     width: 100vw;
 }
+
 .water{
     background: lightblue;
     height: 50vh;
     width: 100vw;
+}
+
+#myProgress {
+    width: 100%;
+    background-color: grey;
+}
+#myBar {
+    width: 1%;
+    height: 30px;
+    background-color: green;
 }
