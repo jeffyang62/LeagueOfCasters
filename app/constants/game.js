@@ -14,14 +14,10 @@ export const KeyCodes = {
 
 
 export const GAME_CODES = {
-    ATTACK1: [
-        [0,0,1],
-        [0,0,1],
-        [0,0,1]
-    ],
-    ATTACK2: [
-        [1,0,0],
-        [1,0,0],
-        [1,0,0]
-    ]
+    FIRE_ATTACK: 1235987,
+    FIRE_DEFEND: 1486325,
+    WATER_ATTACK: 3698752,
+    WATER_DEFEND: 3684125,
+    AIR_ATTACK: 8635742,
+    AIR_DEFEND: 8412365
 }

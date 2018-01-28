@@ -12,8 +12,6 @@ const screens = {
 //Separate reducers into SPRITE and position.
 //Condesne reducer and remove deundancy
 const screenSuccess = (state = screens, action) => {
-    console.log(state);
-
     switch (action.type) {
         case 'START_GAME': 
             return {
@@ -33,7 +31,11 @@ const screenSuccess = (state = screens, action) => {
 
                 //horizontal: action.position,
             }    
-
+        case 'UPDATE_PATTERN':
+            return {
+                ...state,
+                pattern: action.pattern
+            }
         default:
             return state;
     }
