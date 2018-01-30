@@ -3,11 +3,13 @@ import { KeyCodes, Actions } from '../constants';
 const gameStates = {
     stance: 0,
     level: 1,
-    timer: 10000,
+    timer: 2000,
     pattern: 0,
     stanceType: 0,  //0 = fire , 1 = wind , 2 = water
     points: 0,
-    isGameOver: false
+    isGameOver: false,
+    bestScore: 0
+    
 }
 
 //Separate reducers into SPRITE and position.
@@ -37,9 +39,15 @@ const screenSuccess = (state = gameStates, action) => {
                 ...state,
                 pattern: action.pattern
             }
+        case 'NEW_BEST_SCORE':
+            return {
+                ...state,
+                bestScore: action.points
+            }
         case 'GAME_OVER':
             return {
                 ...state,
+                bestScore: action.score,
                 isGameOver: true
             }
         case 'RESTART_GAME':
@@ -47,7 +55,7 @@ const screenSuccess = (state = gameStates, action) => {
                 ...state,
                 points: 0,
                 level: 1,
-                timer: 10000,
+                timer: 2000,
                 isGameOver: false
             }
         default:
