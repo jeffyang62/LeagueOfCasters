@@ -10,10 +10,11 @@ export function wonFight(pattern){
     }
 }
 
-export function lostFight(){
+export function lostFight(score){
     
     return {
-        type: 'GAME_OVER'
+        type: 'GAME_OVER',
+        score
     }
 }
 
@@ -37,6 +38,14 @@ export function updatePoints(points) {
     return {
         type: "RIGHT_PATTERN",
         points,
+    }
+}
+
+
+export function newBestScore(points){
+    return {
+        type: "NEW_BEST_SCORE",
+        points
     }
 }
 
@@ -165,7 +174,7 @@ export function startProgress() {
         function frame() {
             if (width >= 100) {
                 clearInterval(id);
-                dispatch(startTimer());
+                dispatch(gameOver());
             } else {
                 width++; 
                 elem.style.width = width + '%'; 
@@ -175,8 +184,18 @@ export function startProgress() {
 }
 
 export function gameOver(){
+
+    console.log("Game over...");
     return (dispatch, getState) => {
-        dispatch(lostFight());
+        let score = 0;
+        /*
+        if(getState().game.bestScore <= getState().game.points){
+           dispatch(newBestScore(getState().game.points)); 
+        }*/
+
+        getState().game.bestScore > getState().game.points ? score = getState().game.bestScore : score = getState().game.points;
+
+        dispatch(lostFight(score));
     }
 }
   
