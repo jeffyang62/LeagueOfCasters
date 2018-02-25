@@ -1,4 +1,4 @@
-import { getTime, getStance, getStanceType, calculateScore } from '../helper/gameFunctions.js';
+import { getTime, getStance, getStanceType, calculateScore, increaseLevel } from '../helper/gameFunctions.js';
 import { GAME_CODES } from '../constants';
 import { checkDamage } from '../helper/damagePhase.js';
 
@@ -25,19 +25,21 @@ export function restartGame(){
 }
 
 
-export function StartInitial(timer, stance, stanceType) {    
+export function StartInitial(timer, stance, stanceType,intervalID) {    
     return {
-        type: 'UPDATE',
+        type: 'NEXT_ROUND',
         timer,
         stance,
         stanceType,
+        intervalID,
     }
 }
 
-export function updatePoints(points) {
+export function updatePoints(points, newLevel) {
     return {
         type: "RIGHT_PATTERN",
         points,
+        newLevel,
     }
 }
 
@@ -91,10 +93,17 @@ export function airDefend(){
     }
 }
 
+export function resetInterval(id) {
+    return clearInterval(id);
+}
+
 //needs to update scores
 //needs to update levels after x amount of rounds.
 //set random type of jutsu
 
+/**
+ * Call when starting new round (Win/Loss)
+ */
 export function startTimer() {
     return (dispatch, getState) => {
         //console.log(getState());
@@ -102,9 +111,10 @@ export function startTimer() {
         getTime(getState().game.level)
             .then((timer) => {
                 const stance = 0,// getStance(),
-                    stanceType = 0;// getStanceType();          
+                    stanceType = 0;// getStanceType();  
+
                 dispatch(startProgress(timer));
-                dispatch(StartInitial(timer, stance, stanceType));
+                dispatch(StartInitial(timer, stance, stanceType ,id));
                 dispatch(getNpcPattern(stance,stanceType));
 
                 //get pattern form kenny code.
@@ -152,12 +162,14 @@ let id = 0;
  * Thunk get afterbattle result
  */
 export function getBattleResult(pattern){
-    return (dispatch ,getState) => {
+    return (dispatch, getState) => {
         if(checkDamage(pattern, getState().game.pattern)){
+            console.log("Win")
             dispatch(startTimer());
-            dispatch(updatePoints(calculateScore(getState().game.level,getState().game.points)));
+            dispatch(updatePoints(calculateScore(getState().game.level,getState().game.points), increaseLevel(getState().game.level)));
         } else {
             //Lose
+            console.log("Lose")
             dispatch(gameOver());
         }
         clearInterval(id);
@@ -173,7 +185,7 @@ export function startProgress() {
         id = setInterval(frame, timer/100);
         function frame() {
             if (width >= 100) {
-                clearInterval(id);
+                    // dispatch(resetInterval(id));
                 dispatch(gameOver());
             } else {
                 width++; 
@@ -183,7 +195,7 @@ export function startProgress() {
     }
 }
 
-export function gameOver(){
+export function gameOver() {
 
     console.log("Game over...");
     return (dispatch, getState) => {
@@ -191,8 +203,8 @@ export function gameOver(){
         /*
         if(getState().game.bestScore <= getState().game.points){
            dispatch(newBestScore(getState().game.points)); 
-        }*/
-
+        }*/ 
+        clearInterval(id);
         getState().game.bestScore > getState().game.points ? score = getState().game.bestScore : score = getState().game.points;
 
         dispatch(lostFight(score));

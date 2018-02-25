@@ -8,8 +8,8 @@ const gameStates = {
     stanceType: 0,  //0 = fire , 1 = wind , 2 = water
     points: 0,
     isGameOver: false,
-    bestScore: 0
-    
+    bestScore: 0,
+    intervalID: 0
 }
 
 //Separate reducers into SPRITE and position.
@@ -20,19 +20,19 @@ const screenSuccess = (state = gameStates, action) => {
             return {
                 ...state,
             }
-        case 'UPDATE':
+        case 'NEXT_ROUND':
             return {
                 ...state,
                 timer: action.timer,
                 stance: action.stance,
                 stanceType: action.stanceType,
+                intervalID: 0,
             }
         case 'RIGHT_PATTERN':
             return {
                 ...state,
                 points: action.points,
-
-                //horizontal: action.position,
+                level: action.newLevel,
             }    
         case 'UPDATE_PATTERN':
             return {
@@ -56,8 +56,9 @@ const screenSuccess = (state = gameStates, action) => {
                 points: 0,
                 level: 1,
                 timer: 2000,
-                isGameOver: false
-            }
+                isGameOver: false,
+                intervalID: 0
+            }           
         default:
             return state;
     }

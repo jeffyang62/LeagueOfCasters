@@ -11,6 +11,11 @@ export function calculateScore(level, score){
     return (level*10)+score;
 }
 
+export function increaseLevel(level) {
+    //const newLevel = level++;
+    return level+1;
+}
+
 export function getStance() {
     return Math.round(Math.random());
 }
