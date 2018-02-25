@@ -24,6 +24,7 @@ import 'jquery/dist/jquery.min.js';
 //import 'pattern-lock-js/dist/patternlock.min.js';
 //import 'pattern-lock-js/dist/patternlock.css';
 
+import './assets/fonts/fonts.css';
 import './main.css';
 
 

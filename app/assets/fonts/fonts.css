@@ -1,0 +1,20 @@
+@font-face {
+    font-family: 'arcadeclassicregular';
+    src: url('arcadeclassic-webfont.woff2') format('woff2'),
+         url('arcadeclassic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+  body{
+    overflow-x: hidden;
+    overflow-y: hidden;
+      
+  }
+
+  p{
+      font-size: 25px;
+    font-family: 'arcadeclassicregular';
+  }
+  

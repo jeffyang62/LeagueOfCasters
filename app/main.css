@@ -1,8 +1,6 @@
 
-body{
-    overflow-x: hidden;
-    overflow-y: hidden;
-}
+
+
 
 img{
     height: 40vh;
@@ -58,4 +56,8 @@ img{
     width: 1%;
     height: 30px;
     background-color: green;
+}
+
+.noMarginBottom{
+    margin-bottom: 0px;
 }

@@ -40,7 +40,11 @@ class jeffpage extends React.Component {
         //console.log(this.props.game.stance)
          return (
             <div>
-                
+                 <div className="row noMarginBottom">
+                     <div id="col s12 myProgress">
+                        <div id="myBar"></div>
+                     </div>     
+                </div>
                 {this.props.game.isGameOver ? <GameOver {...this.props} /> : ''}
                 <div className ="row">
                     <div className={this.props.game.stanceType == 0 ? "col s12 fire": this.props.game.stanceType == 1 ? "col s12 water": "col s12 wind" }>
@@ -48,11 +52,7 @@ class jeffpage extends React.Component {
                         {this.props.game.stance==0 ? <Attack /> : <Defend />}
                     </div>
                 </div>
-                <div className="row">
-                     <div id="col s12 myProgress">
-                        <div id="myBar"></div>
-                     </div>     
-                </div>
+               
                 <div className="row">
                     <svg className="patternlock" id="patternHolder" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                         <g className="lock-actives"></g>
