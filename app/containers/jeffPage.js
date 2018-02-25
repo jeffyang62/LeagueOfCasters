@@ -42,13 +42,15 @@ class jeffpage extends React.Component {
             <div>
                  <div className="row noMarginBottom">
                      <div id="col s12 myProgress">
-                        <div id="myBar"></div>
+                        <div id="myBar">
+                            <p>Level {this.props.game.level}</p>
+                        </div>
                      </div>     
                 </div>
                 {this.props.game.isGameOver ? <GameOver {...this.props} /> : ''}
                 <div className ="row">
                     <div className={this.props.game.stanceType == 0 ? "col s12 fire": this.props.game.stanceType == 1 ? "col s12 water": "col s12 wind" }>
-                    <p>{this.props.game.points}</p>
+                    <p>Score {this.props.game.points}</p>
                         {this.props.game.stance==0 ? <Attack /> : <Defend />}
                     </div>
                 </div>

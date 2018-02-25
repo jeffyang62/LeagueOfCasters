@@ -117,7 +117,6 @@ export function startTimer() {
                 dispatch(StartInitial(timer, stance, stanceType ,id));
                 dispatch(getNpcPattern(stance,stanceType));
 
-                //get pattern form kenny code.
             })
     }
 }
@@ -149,6 +148,10 @@ export function getNpcPattern(stance, stanceType){
         }
     }
 }
+
+/**
+ * Function triggers when start
+ */
 export function startGame() {
     return (dispatch, getState) => {
        dispatch(startTimer());
@@ -163,6 +166,10 @@ let id = 0;
  */
 export function getBattleResult(pattern){
     return (dispatch, getState) => {
+        console.log("My pattern: " + pattern);
+
+        console.log("NPC pattern: " + getState().game.pattern);
+        
         if(checkDamage(pattern, getState().game.pattern)){
             console.log("Win")
             dispatch(startTimer());

@@ -3,7 +3,7 @@ import { KeyCodes, Actions } from '../constants';
 const gameStates = {
     stance: 0,
     level: 1,
-    timer: 2000,
+    timer: 5000,
     pattern: 0,
     stanceType: 0,  //0 = fire , 1 = wind , 2 = water
     points: 0,
@@ -55,7 +55,7 @@ const screenSuccess = (state = gameStates, action) => {
                 ...state,
                 points: 0,
                 level: 1,
-                timer: 2000,
+                timer: 5000,
                 isGameOver: false,
                 intervalID: 0
             }           

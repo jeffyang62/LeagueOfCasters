@@ -1,7 +1,7 @@
 export function getTime(level) {
     //console.log(d[b]);
     const promise = new Promise((resolve, reject) => {        
-        const newPosition = 2000/level;
+        const newPosition = 5000/level;
         resolve(newPosition);
     });
     return promise;
