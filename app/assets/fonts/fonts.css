@@ -10,11 +10,12 @@
   body{
     overflow-x: hidden;
     overflow-y: hidden;
-      
+    font-family: 'arcadeclassicregular';
+
   }
 
   p{
       font-size: 25px;
-    font-family: 'arcadeclassicregular';
+      margin-top: 0
   }
   

@@ -1,7 +1,7 @@
 export function getTime(level) {
     //console.log(d[b]);
     const promise = new Promise((resolve, reject) => {        
-        const newPosition = 2000/level;
+        const newPosition = 5000/level;
         resolve(newPosition);
     });
     return promise;
@@ -9,6 +9,11 @@ export function getTime(level) {
 
 export function calculateScore(level, score){
     return (level*10)+score;
+}
+
+export function increaseLevel(level) {
+    //const newLevel = level++;
+    return level+1;
 }
 
 export function getStance() {

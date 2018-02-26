@@ -28,6 +28,13 @@ svg.patternlock.error g.lock-actives circle {
     fill: red;
 }
 
+    
+
+.patternlock {
+    margin: 0 15%;
+    height: 40vh;
+    width:auto;
+}
 @keyframes lock-activate-dot {
     0% {
         transform: scale(0);
